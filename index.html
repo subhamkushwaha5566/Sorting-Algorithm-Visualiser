@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aldo Sort - Visualizer</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Algo Sort</h1>
+    <p class="subtitle">Interactive sorting algorithm visualization with real-time complexity analysis</p>
+  </header>
+
+  <main class="grid">
+    <!-- Left control panel -->
+    <aside class="panel controls-panel">
+      <h2><span class="icon">⚙️</span> Control Panel</h2>
+
+      <label class="label">Algorithm</label>
+      <select id="algoSelect" class="input">
+        <option value="bubble">Bubble</option>
+        <option value="selection">Selection</option>
+        <option value="insertion">Insertion</option>
+        <option value="merge">Merge</option>
+        <option value="quick">Quick</option>
+        <option value="heap">Heap</option>
+      </select>
+
+      <div class="row">
+        <label>Array Size: <span id="sizeLabel">30</span></label>
+        <input id="sizeRange" type="range" min="8" max="60" value="30" />
+      </div>
+
+      <div class="row">
+        <label>Speed: <span id="speedLabel">50%</span></label>
+        <input id="speedRange" type="range" min="1" max="100" value="50" />
+      </div>
+
+      <div class="btn-row">
+        <button id="startBtn" class="btn start">▶ Start</button>
+        <button id="stopBtn" class="btn stop">■ Stop</button>
+      </div>
+
+      <button id="regenBtn" class="btn regen">🔁 Generate New Array</button>
+
+      <ul class="legend">
+        <li><span class="legend-box unsorted"></span> Unsorted</li>
+        <li><span class="legend-box comparing"></span> Comparing</li>
+        <li><span class="legend-box swapping"></span> Swapping</li>
+        <li><span class="legend-box sorted"></span> Sorted</li>
+      </ul>
+    </aside>
+
+    <!-- Center visualization -->
+    <section class="panel viz-panel">
+      <h2><span class="icon">📊</span> Sorting Visualization</h2>
+      <div id="vizWrap" class="viz-wrap">
+        <div id="bars" class="bars" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Right performance & complexity -->
+    <aside class="panel stats-panel">
+      <h2><span class="icon">📈</span> Performance Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="comparisons">0</div>
+          <div class="stat-label">Comparisons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="swaps">0</div>
+          <div class="stat-label">Swaps</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="accesses">0</div>
+          <div class="stat-label">Array Access</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="timeTaken">0 ms</div>
+          <div class="stat-label">Time Taken</div>
+        </div>
+      </div>
+
+      <div class="complexity">
+        <h3>Complexity Analysis</h3>
+        <p class="meta">Time Complexity: <span id="timeComplexity">O(n²)</span></p>
+        <p class="meta">Space Complexity: <span id="spaceComplexity">O(1)</span></p>
+        <p class="meta">Stable: <span id="stable">Yes</span></p>
+
+        <div class="algo-info">
+          <h4>Algorithm Info</h4>
+          <div id="algoInfo">Info about algorithm.</div>
+        </div>
+
+        <!-- Combined Graph Card -->
+        <div class="graph-card">
+          <h4 class="graph-title">Performance & Complexity</h4>
+
+          <!-- Performance chart -->
+          <div class="graph-item full-width">
+            <canvas id="performanceChart" aria-label="Performance bar chart"></canvas>
+          </div>
+
+          <!-- Complexity chart -->
+          <div class="graph-item full-width">
+            <canvas id="complexityChart" aria-label="Complexity chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Bottom left: code snippet -->
+    <section class="panel code-panel">
+      <h2><span class="icon">⟨⟩</span> Algorithm Implementation</h2>
+      <div class="code-header">
+        <select id="codeLang" class="input small">
+          <option>JavaScript</option>
+          <option>Python</option>
+          <option>C++</option>
+          <option>java</option>
+          <option>C</option>
+        </select>
+        <button id="copyBtn" class="btn small">Copy</button>
+      </div>
+      <pre id="codeBox" class="code-box" aria-label="Code snippet"></pre>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
